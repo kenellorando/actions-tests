@@ -20,6 +20,9 @@ jobs:
       with:
         ref: "source1"
         fetch-depth: 0
+    # pull on source1
+    - run: |
+          git pull
     # create a new branch (from source1) using the date input
     - name: create datetest branch
       id: create_datetest_branch
