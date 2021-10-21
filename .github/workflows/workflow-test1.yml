@@ -31,6 +31,7 @@ jobs:
       with:
         branch: new1-${{ github.event.inputs.datetest }}
     - run: |
+        git checkout new1-${{ github.event.inputs.datetest }}
         git push origin new1-${{ github.event.inputs.datetest }}
     # create a PR of the new branch pointed towards master
     - name: pull-request
