@@ -28,6 +28,12 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         branch: new1-${{ github.event.inputs.datetest }}
+    # push new branch to origin
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: new1-${{ github.event.inputs.datetest }}
     # create a PR of the new branch pointed towards master
     - name: pull-request
       uses: repo-sync/pull-request@v2
