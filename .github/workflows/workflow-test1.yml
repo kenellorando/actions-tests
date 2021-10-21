@@ -19,6 +19,7 @@ jobs:
       with:
         ref: "source1"
     - name: create PR
+      uses: peter-evans/create-pull-request@v3
       id: create_pr
       with:
         commit-message: "message test"
