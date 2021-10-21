@@ -37,8 +37,8 @@ jobs:
         source_branch: new1-${{ github.event.inputs.datetest }}
         destination_branch: "master"
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        pr_title: "Automated PR test"
-        pr_body: "Automated PR test body*"      
-        pr_reviewer: "kenellorando"
-        pr_assignee: "kenellorando"
-        pr_allow_empty: true    
+#         pr_title: "Automated PR test"
+#         pr_body: "Automated PR test body*"      
+#         pr_reviewer: "kenellorando"
+#         pr_assignee: "kenellorando"
+#         pr_allow_empty: true    
