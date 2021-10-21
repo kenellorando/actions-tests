@@ -18,7 +18,7 @@ jobs:
       uses: actions/checkout@v2
       id: checkout_branch
       with:
-        ref: "source1"
+        ref: "source2"
         fetch-depth: 0
     - run: |
         git pull
