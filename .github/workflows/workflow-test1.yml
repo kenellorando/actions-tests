@@ -23,15 +23,8 @@ jobs:
     - run: |
         git pull
     # create a new branch (from source1) using the date input
-    - name: create datetest branch
-      id: create_datetest_branch
-      uses: peterjgrainger/action-create-branch@v2.0.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        branch: new1-${{ github.event.inputs.datetest }}
     - run: |
-        git checkout new1-${{ github.event.inputs.datetest }}
+        git checkout -b new1-${{ github.event.inputs.datetest }}
         git push origin new1-${{ github.event.inputs.datetest }}
     # create a PR of the new branch pointed towards master
     - name: pull-request
