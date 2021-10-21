@@ -13,12 +13,20 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
+    # checkout "source1"
     - name: checkout branch
       uses: actions/checkout@v2
       id: checkout_branch
       with:
         ref: "source1"
         fetch-depth: 0
+    # create a new branch off of source1 with the date input
+    - name: create datetest branch
+      uses: aaiezza/create-release@master
+      id: create_datetest_branch
+      with:
+        release_branch: new1-${{ github.event.inputs.datetest }}
+    # create a PR of the new branch pointed towards master
     - name: create PR
       uses: peter-evans/create-pull-request@v3
       id: create_pr
@@ -27,8 +35,8 @@ jobs:
         committer: "Ken Ellorando <kenellorando@gmail.com>"
         author: "Ken Ellorando <kenellorando@gmail.com>"
         signoff: false
-        base: source1
-        branch: new1-${{ github.event.inputs.datetest }}
+        base: ${{ steps.create_datetest_branch.outputs.release }}
+        branch: master
         delete-branch: false
         title: 'automated pr test'
         body: |
