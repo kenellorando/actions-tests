@@ -29,18 +29,14 @@ jobs:
       with:
         branch: new1-${{ github.event.inputs.datetest }}
     # create a PR of the new branch pointed towards master
-    - name: create PR
-      uses: peter-evans/create-pull-request@v3
-      id: create_pr
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
       with:
-        commit-message: "message test"
-        committer: "Ken Ellorando <kenellorando@gmail.com>"
-        author: "Ken Ellorando <kenellorando@gmail.com>"
-        signoff: false
-        base: new1-${{ github.event.inputs.datetest }}
-        branch: master
-        delete-branch: false
-        title: 'automated pr test'
-        body: |
-          automated pr test body
-        assignees: kenellorando
+        destination_branch: "master"
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        pr_label: "feature, automated pr"
+        pr_title: "Automated PR test"
+        pr_body: "Automated PR test body*"      
+        pr_reviewer: "kenellorando"
+        pr_assignee: "kenellorando"
+        pr_allow_empty: true    
