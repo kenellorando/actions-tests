@@ -20,12 +20,14 @@ jobs:
       with:
         ref: "source1"
         fetch-depth: 0
-    # create a new branch off of source1 with the date input
+    # create a new branch (from source1) using the date input
     - name: create datetest branch
-      uses: aaiezza/create-release@master
       id: create_datetest_branch
+      uses: peterjgrainger/action-create-branch@v2.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        release_branch: new1-${{ github.event.inputs.datetest }}
+        branch: new1-${{ github.event.inputs.datetest }}
     # create a PR of the new branch pointed towards master
     - name: create PR
       uses: peter-evans/create-pull-request@v3
@@ -35,11 +37,10 @@ jobs:
         committer: "Ken Ellorando <kenellorando@gmail.com>"
         author: "Ken Ellorando <kenellorando@gmail.com>"
         signoff: false
-        base: ${{ steps.create_datetest_branch.outputs.release }}
+        base: new1-${{ github.event.inputs.datetest }}
         branch: master
         delete-branch: false
         title: 'automated pr test'
         body: |
           automated pr test body
         assignees: kenellorando
-    
