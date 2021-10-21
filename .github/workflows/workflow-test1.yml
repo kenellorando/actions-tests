@@ -18,6 +18,7 @@ jobs:
       id: checkout_branch
       with:
         ref: "source1"
+        fetch-depth: 0
     - name: create PR
       uses: peter-evans/create-pull-request@v3
       id: create_pr
